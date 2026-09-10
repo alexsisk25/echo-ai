@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN"
+  "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<!--
+  Optional launchd agent that syncs Voice Memos every 5 minutes.
+  The app uses manual sync (the button in the UI) by default; load this
+  only if you want automatic background sync.
+
+  Before loading, replace both PROJECT_ROOT placeholders below with the
+  absolute path to your clone (no ~), then:
+    cp scripts/com.local-otter.voicememo-sync.plist ~/Library/LaunchAgents/
+    launchctl load ~/Library/LaunchAgents/com.local-otter.voicememo-sync.plist
+  The process running it needs Full Disk Access (see SETUP.md).
+-->
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>com.local-otter.voicememo-sync</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>PROJECT_ROOT/.venv/bin/python</string>
+        <string>PROJECT_ROOT/scripts/sync_voice_memos.py</string>
+    </array>
+    <key>StartInterval</key>
+    <integer>300</integer>
+    <key>StandardOutPath</key>
+    <string>/tmp/local-otter-sync.log</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/local-otter-sync.log</string>
+</dict>
+</plist>

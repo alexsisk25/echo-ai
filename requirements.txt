@@ -1,0 +1,44 @@
+# Direct dependencies for the Python worker.
+# Install into the uv venv: uv pip install --python .venv/bin/python -r requirements.txt
+fastapi
+uvicorn
+pydantic
+keyring
+sqlcipher3-wheels
+watchdog
+mlx-whisper==0.4.3
+httpx
+pytest
+# Diarization stack. These four move together: pyannote 3.x needs the old
+# torch.load behavior (pre-2.6) and the old huggingface_hub token argument.
+# The newer pyannote 4.x needs the community-1 model gate, which this
+# machine's HF token does not have. Change with care.
+pyannote.audio<4
+torch==2.5.1
+torchaudio==2.5.1
+huggingface_hub<1.0
+# Pinned per PLAN.md: two releases after 1.82.6 shipped malware. Do not
+# upgrade past this version without checking PLAN.md first.
+litellm==1.82.6
+# Phase 4: local semantic search and voice fingerprinting.
+# mlx-whisper, sqlite-vec, speechbrain and numpy were pinned
+# 2026-09-09 at the versions running on this machine, so a routine
+# install cannot drag them the way it did on 2026-07-13.
+sqlite-vec==0.1.9
+# Pinned 2026-07-16: newer sentence-transformers (5.x) and transformers
+# (4.53+) need torch newer than the 2.5.1 the diarization stack pins,
+# and newer mlx-lm needs transformers 5.x. These three move with the
+# torch pin above. A routine install on 2026-07-13 dragged them up and
+# broke the embedding import chain.
+sentence-transformers==3.4.1
+speechbrain==1.1.0
+numpy==2.4.6
+# Phase 5: privacy vault local model, and mlx-lm needs transformers 4.x.
+mlx-lm==0.24.1
+transformers==4.49.0
+# Phase 3 calendar half: Google Calendar (read-only OAuth desktop flow).
+google-api-python-client
+google-auth-oauthlib
+# Imported directly by the test suite; was only ever present
+# transitively through speechbrain, so it is declared here.
+soundfile==0.14.0

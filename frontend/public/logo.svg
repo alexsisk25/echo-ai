@@ -1,0 +1,19 @@
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg">
+  <title>Echo AI</title>
+  <rect x="2" y="2" width="68" height="68" rx="16" class="logo-tile"/>
+  <g class="logo-wave" stroke-width="5" stroke-linecap="round" fill="none">
+    <line x1="16" y1="24" x2="16" y2="48"/>
+    <line x1="27" y1="18" x2="27" y2="54"/>
+    <line x1="38" y1="26" x2="38" y2="46" opacity="0.7"/>
+    <line x1="48" y1="30" x2="48" y2="42" opacity="0.45"/>
+    <line x1="57" y1="33" x2="57" y2="39" opacity="0.25"/>
+  </g>
+  <style>
+    .logo-tile { fill: #2C2C2A; }
+    .logo-wave { stroke: #F1EFE8; }
+    @media (prefers-color-scheme: dark) {
+      .logo-tile { fill: #F1EFE8; }
+      .logo-wave { stroke: #2C2C2A; }
+    }
+  </style>
+</svg>
